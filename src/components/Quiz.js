@@ -1,14 +1,17 @@
 import { Axios } from "axios";
 import React, { useState, useEffect } from "react";
+import Question from "./Question";
 
 const Quiz = (props) => {
   const axios = require("axios").default;
   const [isLoading, setIsLoading] = useState(true);
+  const [questionsets, setQuestionsets] = useState([]);
   const getques = (url) => {
     axios
       .get(url)
       .then((response) => {
-        return response;
+        // console.log(response.data.results);
+        setQuestionsets(response.data.results);
       })
       .then(setIsLoading(false));
   };
@@ -20,6 +23,9 @@ const Quiz = (props) => {
   return (
     <>
       <div>hello</div>
+      <div>
+        <Question questionset={questionsets} />
+      </div>
       {isLoading && (
         <div>
           <h1>LOADING ...</h1>
