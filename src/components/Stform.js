@@ -17,8 +17,9 @@ const Stform = (props) => {
     url += "&type=";
     url += e.target[3].value == "any" ? "" : e.target[3].value;
 
-    console.log(url);
+    props.setUrl(url);
     props.setShowq(true);
+
     e.preventDefault();
   };
 
