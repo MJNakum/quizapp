@@ -10,7 +10,7 @@ const Quiz = (props) => {
     axios
       .get(url)
       .then((response) => {
-        // console.log(response.data.results);
+        // console.log(response);
         setQuestionsets(response.data.results);
       })
       .then(setIsLoading(false));
