@@ -1,52 +1,71 @@
 import React, { Component, useState } from "react";
+import "./css/Question.css";
 
 const Question = (props) => {
-  const questions = props.questionset;
-  const [isLoading, setIsLoading] = useState(true);
+  const question = props.question;
+  const correct = props.correct;
+  const option = props.options;
 
-  function shuffleArray(array) {
-    let i = array.length - 1;
-    for (; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
-  }
+  // const [isLoading, setIsLoading] = useState(true);
+  const [fcolor, setFcolor] = useState("rgba(217, 217, 217, 0.5)");
+  const [isDisable, setISDisable] = useState(false);
 
-  const multiple = (qset) => {
-    qset.incorrect_answers.push(qset.correct_answer);
-    qset.incorrect_answers = shuffleArray(qset.incorrect_answers);
+  // const multiple = (qset) => {
+  // qset.incorrect_answers.push(qset.correct_answer);
+  // qset.incorrect_answers = shuffleArray(qset.incorrect_answers);
 
-    qset.incorrect_answers = Array.from(new Set(qset.incorrect_answers));
+  // qset.incorrect_answers = Array.from(new Set(qset.incorrect_answers));
 
-    console.log(qset.incorrect_answers, qset.correct_answer);
-    return qset.incorrect_answers.map((ans) => {
-      return <button key={ans}> {ans} </button>;
-    });
-  };
+  // console.log(qset.incorrect_answers, qset.correct_answer);
+  //   return (
 
-  const showques = questions.map((questionset) => {
-    return (
-      <div key={questionset.question}>
-        <h2>{questionset.question}</h2>
+  //   );
+  // };
 
-        {questionset.type == "multiple" ? (
-          multiple(questionset)
-        ) : (
-          <button>dsfhjkfhdsjkfhjskdfhsjkdfhj</button>
-        )}
-      </div>
-    );
-  });
+  // const showques = questions.map((questionset) => {
+  //   return (
+  //     <div
+  //       key={questionset.question}
+  //       className="form2"
+  //       style={{ backgroundColor: fcolor }}
+  //     >
+  //       <h2>{questionset.question}</h2>
+
+  //       {questionset.type == "multiple" ? (
+  //         multiple(questionset)
+  //       ) : (
+  //         <button>dsfhjkfhdsjkfhjskdfhsjkdfhj</button>
+  //       )}
+  //     </div>
+  //   );
+  // });
 
   return (
     <>
-      {isLoading}
-      <div></div>
-      {/* {console.log(props.questionset)} */}
-      <div>{showques}</div>
+      <div className="form2" style={{ backgroundColor: fcolor }}>
+        <h2>{question}</h2>
+        <div className="btn-group">
+          <center>
+            {console.log(option)}
+            {option?.map((ans) => {
+              return (
+                <button
+                  disabled={isDisable}
+                  key={ans}
+                  onClick={() => {
+                    setISDisable(true);
+                    ans === correct
+                      ? setFcolor("rgba(93,224,48, 0.634)")
+                      : setFcolor("rgba(252, 62, 24, 0.634)");
+                  }}
+                >
+                  {ans}
+                </button>
+              );
+            })}
+          </center>
+        </div>
+      </div>
     </>
   );
 };
