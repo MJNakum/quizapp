@@ -1,11 +1,14 @@
 import { Axios } from "axios";
 import React, { useState, useEffect } from "react";
 import Question from "./Question";
+import Result from "./Result";
 
 const Quiz = (props) => {
   const axios = require("axios").default;
   const [isLoading, setIsLoading] = useState(true);
   const [questionsets, setQuestionsets] = useState([]);
+  const [score, setscore] = useState(0);
+  const [highscore, sethighscore] = useState(0);
   const getques = (url) => {
     axios
       .get(url)
@@ -41,11 +44,20 @@ const Quiz = (props) => {
             question={qset.question}
             options={qset.incorrect_answers}
             correct={qset.correct_answer}
+            setscore={setscore}
+            score={score}
           />
         </div>
       );
     }
   });
+
+  const submit = () => {
+    if (score > highscore) sethighscore(score);
+    setscore(0);
+    console.log(score, highscore);
+    return <Result />;
+  };
 
   useEffect(() => {
     getques(props.url);
@@ -53,13 +65,30 @@ const Quiz = (props) => {
 
   return (
     <>
+      <div>
+        <div className="scorecard">
+          <center>
+            <div>Current Score</div>
+            <div style={{ fontSize: "xxx-large" }}>{score}</div>
+            <br />
+            <div>Highest Score</div>
+            <div style={{ fontSize: "xxx-large" }}>{highscore}</div>
+          </center>
+        </div>
+      </div>
       {showques}
-      <div>{/* <Question questionset={questionsets} /> */}</div>
       {isLoading && (
         <div>
           <h1>LOADING ...</h1>
         </div>
       )}
+      <div>
+        <center>
+          <button onClick={submit} className="submit">
+            Submit
+          </button>
+        </center>
+      </div>
     </>
   );
 };

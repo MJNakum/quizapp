@@ -11,6 +11,23 @@
     margin: 2px;
 }
 
+.submit{
+    background-color: #e3871e;
+        border: 1px solid #d9d9d9;
+        color: white;
+        padding: 10px 24px;
+        cursor: pointer;
+        width: 20%;
+        display: block;
+        transition: 0.3s;
+        margin: 25px;
+        margin-bottom: 50px;
+}
+
+.submit:hover{
+    background-color: rgba(227, 135, 30, 0.8);
+}
+
 .btn-group button:not(:last-child) {
     border-bottom: none;
 }

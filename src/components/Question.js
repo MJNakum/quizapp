@@ -6,39 +6,13 @@ const Question = (props) => {
   const correct = props.correct;
   const option = props.options;
 
-  // const [isLoading, setIsLoading] = useState(true);
   const [fcolor, setFcolor] = useState("rgba(217, 217, 217, 0.5)");
   const [isDisable, setISDisable] = useState(false);
 
-  // const multiple = (qset) => {
-  // qset.incorrect_answers.push(qset.correct_answer);
-  // qset.incorrect_answers = shuffleArray(qset.incorrect_answers);
-
-  // qset.incorrect_answers = Array.from(new Set(qset.incorrect_answers));
-
-  // console.log(qset.incorrect_answers, qset.correct_answer);
-  //   return (
-
-  //   );
-  // };
-
-  // const showques = questions.map((questionset) => {
-  //   return (
-  //     <div
-  //       key={questionset.question}
-  //       className="form2"
-  //       style={{ backgroundColor: fcolor }}
-  //     >
-  //       <h2>{questionset.question}</h2>
-
-  //       {questionset.type == "multiple" ? (
-  //         multiple(questionset)
-  //       ) : (
-  //         <button>dsfhjkfhdsjkfhjskdfhsjkdfhj</button>
-  //       )}
-  //     </div>
-  //   );
-  // });
+  const cor = () => {
+    props.setscore(props.score + 1);
+    setFcolor("rgba(93,224,48, 0.634)");
+  };
 
   return (
     <>
@@ -55,7 +29,7 @@ const Question = (props) => {
                   onClick={() => {
                     setISDisable(true);
                     ans === correct
-                      ? setFcolor("rgba(93,224,48, 0.634)")
+                      ? cor()
                       : setFcolor("rgba(252, 62, 24, 0.634)");
                   }}
                 >

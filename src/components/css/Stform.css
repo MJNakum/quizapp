@@ -46,3 +46,17 @@
   background-color: #f14f4f;
   color: white;
 }
+
+.scorecard{
+  background-color: rgb(245, 245, 220, 0.6);
+  font-size:x-large ;
+  z-index: 1;
+  position: fixed;
+  margin: 20px;
+  margin-top: 0;
+  padding: 10px;
+  padding-top: 40px;
+  width: 20%;
+  height: 30%;
+  border-radius: 4px;
+}
