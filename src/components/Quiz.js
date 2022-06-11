@@ -59,9 +59,18 @@ const Quiz = (props) => {
     return <Result />;
   };
 
+  const set = () => {
+    sethighscore(JSON.parse(window.localStorage.getItem("HighScore")));
+  };
+
   useEffect(() => {
     getques(props.url);
+    set();
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("HighScore", highscore);
+  }, [highscore]);
 
   return (
     <>
